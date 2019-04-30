@@ -1,11 +1,21 @@
 package com.serversocket.dao;
 
+import com.serversocket.entity.Userinfo;
+
 /**
- * @ClassName UserinfoMapper
+ * @interfaceName UserinfoMapper
  * @Description
  * @Author wcx
  * @Date 2019/04/30 17:03
  * @Version
  **/
-public class UserinfoMapper {
+public interface UserinfoMapper {
+
+    int insertUserinfo(Userinfo userinfo);
+
+    int deleteUserinfo(Long userId);
+
+    int updateUserinfo(Userinfo userinfo);
+
+    Userinfo selectUserinfoById(Long userId);
 }

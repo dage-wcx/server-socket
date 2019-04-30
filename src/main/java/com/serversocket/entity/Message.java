@@ -33,9 +33,9 @@ public class Message implements Serializable {
     private Integer sendMsgUserPort;
 
     /**
-     * 发送消息的用户端口
+     * 发送消息的用户ip
      */
-    private Integer sendMsgUserIP;
+    private Long sendMsgUserIP;
 
     /**
      * 接收消息的用户id
@@ -49,7 +49,7 @@ public class Message implements Serializable {
 
     public Message() { }
 
-    public Message(Long msgId, Long sendMsgUserId, String sendMsgUsername, Integer sendMsgUserPort, Integer sendMsgUserIP,
+    public Message(Long msgId, Long sendMsgUserId, String sendMsgUsername, Integer sendMsgUserPort, Long sendMsgUserIP,
                    Long receiveMsgUserId, Date sendMsgTime) {
         this.msgId = msgId;
         this.sendMsgUserId = sendMsgUserId;
@@ -92,11 +92,11 @@ public class Message implements Serializable {
         this.sendMsgUserPort = sendMsgUserPort;
     }
 
-    public Integer getSendMsgUserIP() {
+    public Long getSendMsgUserIP() {
         return sendMsgUserIP;
     }
 
-    public void setSendMsgUserIP(Integer sendMsgUserIP) {
+    public void setSendMsgUserIP(Long sendMsgUserIP) {
         this.sendMsgUserIP = sendMsgUserIP;
     }
 
