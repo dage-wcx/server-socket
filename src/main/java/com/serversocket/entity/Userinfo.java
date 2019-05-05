@@ -1,5 +1,8 @@
 package com.serversocket.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFilter;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,6 +36,11 @@ public class Userinfo implements Serializable {
     private String password;
 
     /**
+     * 手机号
+     */
+    private Long phone;
+
+    /**
      * 用户头像
      */
     private String headPhoto;
@@ -45,16 +53,19 @@ public class Userinfo implements Serializable {
     /**
      * 用户生日
      */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
 
     /**
      * 用户注册时间
      */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date registerTime;
 
     /**
      * 用户修改时间
      */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
     /**
@@ -64,12 +75,13 @@ public class Userinfo implements Serializable {
 
     public Userinfo() { }
 
-    public Userinfo(Long userId, Long userAccount, String username, String password, String headPhoto, String sex,
-                    Date birthday, Date registerTime, Date modifyTime, Integer tag) {
+    public Userinfo(Long userId, Long userAccount, String username, String password, Long phone,
+                    String headPhoto, String sex, Date birthday, Date registerTime, Date modifyTime, Integer tag) {
         this.userId = userId;
         this.userAccount = userAccount;
         this.username = username;
         this.password = password;
+        this.phone = phone;
         this.headPhoto = headPhoto;
         this.sex = sex;
         this.birthday = birthday;
@@ -156,5 +168,30 @@ public class Userinfo implements Serializable {
 
     public void setTag(Integer tag) {
         this.tag = tag;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Userinfo{" +
+                "userId=" + userId +
+                ", userAccount=" + userAccount +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone=" + phone +
+                ", headPhoto='" + headPhoto + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday=" + birthday +
+                ", registerTime=" + registerTime +
+                ", modifyTime=" + modifyTime +
+                ", tag=" + tag +
+                '}';
     }
 }

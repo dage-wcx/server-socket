@@ -2,8 +2,10 @@ package com.serversocket.dao;
 
 import com.serversocket.entity.Userinfo;
 
+import java.util.List;
+
 /**
- * @interfaceName UserinfoMapper
+ * @InterfaceName UserinfoMapper
  * @Description
  * @Author wcx
  * @Date 2019/04/30 17:03
@@ -18,4 +20,6 @@ public interface UserinfoMapper {
     int updateUserinfo(Userinfo userinfo);
 
     Userinfo selectUserinfoById(Long userId);
+
+    List<Userinfo> selectAllUserinfo();
 }
