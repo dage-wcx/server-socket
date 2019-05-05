@@ -123,4 +123,22 @@ public class UserinfoServiceImpl implements IUserinfoService {
         }
         return null;
     }
+
+    /**
+     * 登录验证
+     * @param userinfo
+     * @return
+     */
+    @Override
+    public boolean checkLogin(Userinfo userinfo) {
+        try{
+            int i = userinfoMapper.checkLogin(userinfo);
+            if(i > 0){
+                return true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

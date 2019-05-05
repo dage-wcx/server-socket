@@ -22,4 +22,6 @@ public interface UserinfoMapper {
     Userinfo selectUserinfoById(Long userId);
 
     List<Userinfo> selectAllUserinfo();
+
+    int checkLogin(Userinfo userinfo);
 }

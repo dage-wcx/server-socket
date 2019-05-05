@@ -46,4 +46,11 @@ public interface IUserinfoService {
      * @return
      */
     List<Userinfo> selectAllUserinfo();
+
+    /**
+     * 登录验证
+     * @param userinfo
+     * @return
+     */
+    boolean checkLogin(Userinfo userinfo);
 }

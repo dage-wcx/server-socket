@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * @ClassName UserinfoController
  * @Description
@@ -26,6 +28,11 @@ public class UserinfoController {
         return "register";
     }
 
+    @RequestMapping("login")
+    public String login(){
+        return "login";
+    }
+
     @PostMapping("registerUser")
     public String registerUser(Userinfo userinfo){
         boolean flag = userinfoServiceImpl.insertUserinfo(userinfo);
@@ -33,5 +40,14 @@ public class UserinfoController {
             return "error";
         }
         return "login";
+    }
+
+    @PostMapping("loginUser")
+    public String loginUser(Userinfo userinfo){
+        boolean flag = userinfoServiceImpl.checkLogin(userinfo);
+        if(!flag){
+            return "error";
+        }
+        return "friend";
     }
 }
