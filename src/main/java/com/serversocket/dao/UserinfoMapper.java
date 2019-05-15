@@ -24,4 +24,6 @@ public interface UserinfoMapper {
     List<Userinfo> selectAllUserinfo();
 
     Userinfo checkLogin(Userinfo userinfo);
+
+    Userinfo selectUserinfoByAccount(Long account);
 }

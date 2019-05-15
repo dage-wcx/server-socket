@@ -1,7 +1,6 @@
 package com.serversocket.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -24,8 +23,8 @@ public class WebController {
         return "register";
     }
 
-    @RequestMapping("friend")
+    @RequestMapping("addfriend")
     public String friend(){
-        return "friend";
+        return "addfriend";
     }
 }

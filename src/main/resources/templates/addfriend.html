@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>添加好友</title>
+</head>
+<body>
+
+<div>
+    <input type="text" name="serach" placeholder="请输入账号\昵称">
+    <span id="serach">搜索</span><br/>
+</div>
+
+<table>
+    <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $("#serach").click(function () {
+        $.ajax({
+            url: "",
+            type: "post",
+            data: ({
+                serach: $("input[name='serach']").val(),
+            }),
+            success: function () {
+
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

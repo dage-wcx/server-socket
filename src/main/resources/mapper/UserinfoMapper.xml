@@ -132,8 +132,15 @@
         where userId = #{userId,jdbcType=BIGINT}
     </update>
 
+    <!--登录-->
     <select id="checkLogin" parameterType="userinfo" resultMap="baseResultMap">
         select <include refid="Base_Column_List"/> from userinfo
         where userAccount = #{userAccount,jdbcType=BIGINT} and password = #{password,jdbcType=VARCHAR} and tag = 1
+    </select>
+
+    <!--根据用户账号搜索用户-->
+    <select id="selectUserinfoByAccount" parameterType="userinfo" resultMap="baseResultMap">
+        select <include refid="Base_Column_List"/> from userinfo
+        where userAccount = #{account,jdbcType=BIGINT}
     </select>
 </mapper>

@@ -79,4 +79,10 @@ public class UserinfoTest {
         JsonResponse jr = userinfoServiceImpl.checkLogin(u);
         System.out.println(jr.getMsg());
     }
+
+    @Test
+    public void serachUserByAccount(){
+       Userinfo u = userinfoMapper.selectUserinfoByAccount(1192274716L);
+       System.out.println(u);
+    }
 }
