@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.serversocket.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.serversocket.entity.Message" >
+    <constructor >
+      <idArg column="msgId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="sendMsgUserId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="sendMsgUsername" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sendMsgUserPort" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sendMSgUserIP" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="receiveMsgUserId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="sendMsgTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    msgId, sendMsgUserId, sendMsgUsername, sendMsgUserPort, sendMSgUserIP, receiveMsgUserId, 
+    sendMsgTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where msgId = #{msgid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message
+    where msgId = #{msgid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.serversocket.entity.Message" >
+    insert into message (msgId, sendMsgUserId, sendMsgUsername, 
+      sendMsgUserPort, sendMSgUserIP, receiveMsgUserId, 
+      sendMsgTime)
+    values (#{msgid,jdbcType=BIGINT}, #{sendmsguserid,jdbcType=BIGINT}, #{sendmsgusername,jdbcType=VARCHAR}, 
+      #{sendmsguserport,jdbcType=INTEGER}, #{sendmsguserip,jdbcType=BIGINT}, #{receivemsguserid,jdbcType=BIGINT}, 
+      #{sendmsgtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.serversocket.entity.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="msgid != null" >
+        msgId,
+      </if>
+      <if test="sendmsguserid != null" >
+        sendMsgUserId,
+      </if>
+      <if test="sendmsgusername != null" >
+        sendMsgUsername,
+      </if>
+      <if test="sendmsguserport != null" >
+        sendMsgUserPort,
+      </if>
+      <if test="sendmsguserip != null" >
+        sendMSgUserIP,
+      </if>
+      <if test="receivemsguserid != null" >
+        receiveMsgUserId,
+      </if>
+      <if test="sendmsgtime != null" >
+        sendMsgTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="msgid != null" >
+        #{msgid,jdbcType=BIGINT},
+      </if>
+      <if test="sendmsguserid != null" >
+        #{sendmsguserid,jdbcType=BIGINT},
+      </if>
+      <if test="sendmsgusername != null" >
+        #{sendmsgusername,jdbcType=VARCHAR},
+      </if>
+      <if test="sendmsguserport != null" >
+        #{sendmsguserport,jdbcType=INTEGER},
+      </if>
+      <if test="sendmsguserip != null" >
+        #{sendmsguserip,jdbcType=BIGINT},
+      </if>
+      <if test="receivemsguserid != null" >
+        #{receivemsguserid,jdbcType=BIGINT},
+      </if>
+      <if test="sendmsgtime != null" >
+        #{sendmsgtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.serversocket.entity.Message" >
+    update message
+    <set >
+      <if test="sendmsguserid != null" >
+        sendMsgUserId = #{sendmsguserid,jdbcType=BIGINT},
+      </if>
+      <if test="sendmsgusername != null" >
+        sendMsgUsername = #{sendmsgusername,jdbcType=VARCHAR},
+      </if>
+      <if test="sendmsguserport != null" >
+        sendMsgUserPort = #{sendmsguserport,jdbcType=INTEGER},
+      </if>
+      <if test="sendmsguserip != null" >
+        sendMSgUserIP = #{sendmsguserip,jdbcType=BIGINT},
+      </if>
+      <if test="receivemsguserid != null" >
+        receiveMsgUserId = #{receivemsguserid,jdbcType=BIGINT},
+      </if>
+      <if test="sendmsgtime != null" >
+        sendMsgTime = #{sendmsgtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where msgId = #{msgid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.serversocket.entity.Message" >
+    update message
+    set sendMsgUserId = #{sendmsguserid,jdbcType=BIGINT},
+      sendMsgUsername = #{sendmsgusername,jdbcType=VARCHAR},
+      sendMsgUserPort = #{sendmsguserport,jdbcType=INTEGER},
+      sendMSgUserIP = #{sendmsguserip,jdbcType=BIGINT},
+      receiveMsgUserId = #{receivemsguserid,jdbcType=BIGINT},
+      sendMsgTime = #{sendmsgtime,jdbcType=TIMESTAMP}
+    where msgId = #{msgid,jdbcType=BIGINT}
+  </update>
+</mapper>
