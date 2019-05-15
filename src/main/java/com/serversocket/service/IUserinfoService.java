@@ -16,13 +16,15 @@ public interface IUserinfoService {
 
     /**
      * 添加用户
+     *
      * @param userinfo
      * @return
      */
-    boolean insertUserinfo(Userinfo userinfo);
+    JsonResponse register(Userinfo userinfo);
 
     /**
      * 根据id删除用户
+     *
      * @param userId
      * @return
      */
@@ -30,6 +32,7 @@ public interface IUserinfoService {
 
     /**
      * 更新用户信息
+     *
      * @param userinfo
      * @return
      */
@@ -37,6 +40,7 @@ public interface IUserinfoService {
 
     /**
      * 根据id查询用户
+     *
      * @param userId
      * @return
      */
@@ -44,14 +48,17 @@ public interface IUserinfoService {
 
     /**
      * 获取所有用户集合
+     *
      * @return
      */
     List<Userinfo> selectAllUserinfo();
 
     /**
      * 登录验证
+     *
      * @param userinfo
      * @return
      */
     JsonResponse checkLogin(Userinfo userinfo);
+
 }

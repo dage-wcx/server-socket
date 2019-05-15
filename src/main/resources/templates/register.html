@@ -2,17 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <title>注册</title>
+
 </head>
 <body>
-    <form action="/userinfo/registerUser" method="post">
-        <input type="text" name="username" placeholder="请输入用户名" /><br/><br/>
-        <input type="password" name="password" placeholder="请输入密码" /><br/><br/>
-        <label><input type="radio" name="sex" value="男" />男</label><br/><br/>
-        <label><input type="radio" name="sex" value="女" />女</label><br/><br/>
-        <input type="text" name="phone" placeholder="请输入电话号码" /><br/><br/>
-        <input type="submit" value="注册" />
-    </form>
+<form>
+    <input type="text" name="username" placeholder="请输入用户名"/><br/><br/>
+    <input type="password" name="password" placeholder="请输入密码"/><br/><br/>
+    <label><input type="radio" name="sex" value="男"/>男</label><br/><br/>
+    <label><input type="radio" name="sex" value="女"/>女</label><br/><br/>
+    <input type="text" name="phone" placeholder="请输入电话号码"/><br/><br/>
+    <input type="submit" value="注册" onclick="return submit_do();"/>
+</form>
+
+<script type="text/javascript">
+    function submit_do() {
+        $.ajax({
+            url: "/userinfo/register",
+            type: "post",
+            data: {
+                username: $("input[name='username']").val(),
+                password: $("input[name='password']").val(),
+                sex: $("input[name='sex']:checked").val(),
+                phone: $("input[name='phone']").val()
+            },
+            success: function (result) {
+                if (result.code == 1) {
+                    alert("你的账号是："+result.msg)
+                    window.location.href = "/login";
+                } else if (result.code == 0) {
+                    alert(result.msg);
+                }
+            }
+        });
+        return false;
+    }
+</script>
 
 </body>
 </html>

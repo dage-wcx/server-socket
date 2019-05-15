@@ -14,7 +14,7 @@ public class AccountUtils {
 
     public static Long getAccount() {
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyMdHms");
         return Long.parseLong(sdf.format(d));
     }
 }
