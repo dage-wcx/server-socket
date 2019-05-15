@@ -27,13 +27,13 @@ public class SessionHandler extends Thread {
 
 
     //private Map<Integer,Socket> clientSocketSession = null;
-    private Map<String,Socket> clientSocketSession = null;
+    private Map<Long,Socket> clientSocketSession = null;
 
     /*public SessionHandler(Socket socket, Map<Integer, Socket> clientSocketSession) {
         this.socket = socket;
         this.clientSocketSession = clientSocketSession;
     }*/
-    public SessionHandler(Socket socket, Map<String, Socket> clientSocketSession) {
+    public SessionHandler(Socket socket, Map<Long, Socket> clientSocketSession) {
         this.socket = socket;
         this.clientSocketSession = clientSocketSession;
     }
@@ -51,9 +51,9 @@ public class SessionHandler extends Thread {
                     System.out.println(msg);
 
                     //发送数据
-                    Socket targetSocket =  clientSocketSession.get(msg.getReceiveMsgUserId());
+                    Socket targetSocket =  clientSocketSession.get(msg.getReceiveMsgUserAccount());
                     if(targetSocket == null || targetSocket.isClosed()){
-                        System.out.println(msg.getReceiveMsgUserId()+"不再线");
+                        System.out.println(msg.getReceiveMsgUserAccount()+"不再线");
                         continue;
                     }
                     OutputStream out = targetSocket.getOutputStream();

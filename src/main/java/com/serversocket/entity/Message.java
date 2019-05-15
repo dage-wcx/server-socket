@@ -9,9 +9,9 @@ public class Message {
     private Long msgId;
 
     /**
-     * 发送信息的用户id
+     * 发送信息的用户账号
      */
-    private Long sendMsgUserId;
+    private Long sendMsgUserAccount;
 
     /**
      * 发送信息的用户名
@@ -19,7 +19,7 @@ public class Message {
     private String sendMsgUserName;
 
     /**
-     * 发送信息的用户端口号
+     * 发送信息的用户端口
      */
     private Integer sendMsgUserPort;
 
@@ -29,27 +29,33 @@ public class Message {
     private Long sendMsgUserIp;
 
     /**
-     * 接受信息的用户id
+     * 接收信息的用户账号
      */
-    private Long receiveMsgUserId;
+    private Long receiveMsgUserAccount;
 
     /**
-     * 发送信息时间
+     * 发送消息时间
      */
     private Date sendMsgTime;
+
+    /**
+     * 消息内容
+     */
+    private String sendMsgContent;
 
     /**
      *
      * @mbggenerated 2019-05-15
      */
-    public Message(Long msgId, Long sendMsgUserId, String sendMsgUserName, Integer sendMsgUserPort, Long sendMsgUserIp, Long receiveMsgUserId, Date sendMsgTime) {
+    public Message(Long msgId, Long sendMsgUserAccount, String sendMsgUserName, Integer sendMsgUserPort, Long sendMsgUserIp, Long receiveMsgUserAccount, Date sendMsgTime, String sendMsgContent) {
         this.msgId = msgId;
-        this.sendMsgUserId = sendMsgUserId;
+        this.sendMsgUserAccount = sendMsgUserAccount;
         this.sendMsgUserName = sendMsgUserName;
         this.sendMsgUserPort = sendMsgUserPort;
         this.sendMsgUserIp = sendMsgUserIp;
-        this.receiveMsgUserId = receiveMsgUserId;
+        this.receiveMsgUserAccount = receiveMsgUserAccount;
         this.sendMsgTime = sendMsgTime;
+        this.sendMsgContent = sendMsgContent;
     }
 
     /**
@@ -83,17 +89,17 @@ public class Message {
      * 
      * @return 
      */
-    public Long getSendMsgUserId() {
-        return sendMsgUserId;
+    public Long getSendMsgUserAccount() {
+        return sendMsgUserAccount;
     }
 
     /**
      * 设置
      * 
-     * @param sendMsgUserId
+     * @param sendMsgUserAccount
      */
-    public void setSendMsgUserId(Long sendMsgUserId) {
-        this.sendMsgUserId = sendMsgUserId;
+    public void setSendMsgUserAccount(Long sendMsgUserAccount) {
+        this.sendMsgUserAccount = sendMsgUserAccount;
     }
 
     /**
@@ -155,17 +161,17 @@ public class Message {
      * 
      * @return 
      */
-    public Long getReceiveMsgUserId() {
-        return receiveMsgUserId;
+    public Long getReceiveMsgUserAccount() {
+        return receiveMsgUserAccount;
     }
 
     /**
      * 设置
      * 
-     * @param receiveMsgUserId
+     * @param receiveMsgUserAccount
      */
-    public void setReceiveMsgUserId(Long receiveMsgUserId) {
-        this.receiveMsgUserId = receiveMsgUserId;
+    public void setReceiveMsgUserAccount(Long receiveMsgUserAccount) {
+        this.receiveMsgUserAccount = receiveMsgUserAccount;
     }
 
     /**
@@ -184,5 +190,23 @@ public class Message {
      */
     public void setSendMsgTime(Date sendMsgTime) {
         this.sendMsgTime = sendMsgTime;
+    }
+
+    /**
+     * 获取
+     * 
+     * @return 
+     */
+    public String getSendMsgContent() {
+        return sendMsgContent;
+    }
+
+    /**
+     * 设置
+     * 
+     * @param sendMsgContent
+     */
+    public void setSendMsgContent(String sendMsgContent) {
+        this.sendMsgContent = sendMsgContent == null ? null : sendMsgContent.trim();
     }
 }

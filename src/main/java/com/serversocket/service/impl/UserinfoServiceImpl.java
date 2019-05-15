@@ -1,9 +1,12 @@
 package com.serversocket.service.impl;
 
+import com.serversocket.client.Client;
 import com.serversocket.dao.UserinfoMapper;
 import com.serversocket.entity.Userinfo;
 import com.serversocket.service.IUserinfoService;
 import com.serversocket.util.AccountUtils;
+import com.serversocket.util.JsonResponse;
+import com.serversocket.util.WebContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -130,15 +133,16 @@ public class UserinfoServiceImpl implements IUserinfoService {
      * @return
      */
     @Override
-    public boolean checkLogin(Userinfo userinfo) {
+    public JsonResponse checkLogin(Userinfo userinfo) {
         try{
-            int i = userinfoMapper.checkLogin(userinfo);
-            if(i > 0){
-                return true;
+            Userinfo u = userinfoMapper.checkLogin(userinfo);
+            if(u != null){
+                //new Client(u.getUserAccount()).scoketStart();
+                return new JsonResponse(WebContext.COMMON_R_OK, WebContext.COMMENT_SUCCESS_MSG, WebContext.COMMENT_TRUE);
             }
         } catch (Exception e){
             e.printStackTrace();
         }
-        return false;
+        return new JsonResponse(WebContext.COMMON_R_FAIL, WebContext.USERNAME_OR_PASSWORD_ERROR, WebContext.COMMENT_FALSE);
     }
 }

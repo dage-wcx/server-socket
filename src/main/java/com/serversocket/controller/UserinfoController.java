@@ -2,10 +2,12 @@ package com.serversocket.controller;
 
 import com.serversocket.entity.Userinfo;
 import com.serversocket.service.IUserinfoService;
+import com.serversocket.util.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,22 +18,12 @@ import java.util.List;
  * @Date 2019/04/30 17:05
  * @Version
  **/
-@Controller
+@RestController
 @RequestMapping("/userinfo/")
 public class UserinfoController {
 
     @Autowired
     private IUserinfoService userinfoServiceImpl;
-
-    @RequestMapping("register")
-    public String register(){
-        return "register";
-    }
-
-    @RequestMapping("login")
-    public String login(){
-        return "login";
-    }
 
     @PostMapping("registerUser")
     public String registerUser(Userinfo userinfo){
@@ -43,11 +35,8 @@ public class UserinfoController {
     }
 
     @PostMapping("loginUser")
-    public String loginUser(Userinfo userinfo){
-        boolean flag = userinfoServiceImpl.checkLogin(userinfo);
-        if(!flag){
-            return "error";
-        }
-        return "friend";
+    public JsonResponse loginUser(Userinfo userinfo){
+        System.out.println(userinfo);
+        return userinfoServiceImpl.checkLogin(userinfo);
     }
 }

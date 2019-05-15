@@ -1,7 +1,10 @@
 package com.serversocket.serviceTest;
 
+import com.serversocket.dao.UserinfoMapper;
 import com.serversocket.entity.Userinfo;
 import com.serversocket.service.IUserinfoService;
+import com.serversocket.util.JsonResponse;
+import org.apache.catalina.mbeans.UserMBean;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +31,9 @@ public class UserinfoTest {
 
     @Autowired
     private IUserinfoService userinfoServiceImpl;
+
+    @Resource
+    private UserinfoMapper userinfoMapper;
 
     @Test
     public void addUserinfo(){
@@ -66,5 +73,14 @@ public class UserinfoTest {
     public void deleteUserinfo(){
         boolean b = userinfoServiceImpl.deleteUserinfo(6l);
         System.out.println(b);
+    }
+
+    @Test
+    public void checkLogin(){
+        Userinfo u = new Userinfo();
+        u.setUserAccount(11922747126L);
+        u.setPassword("dage1998");
+        JsonResponse jr = userinfoServiceImpl.checkLogin(u);
+        System.out.println(jr.getMsg());
     }
 }

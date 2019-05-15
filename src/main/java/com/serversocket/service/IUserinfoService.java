@@ -1,6 +1,7 @@
 package com.serversocket.service;
 
 import com.serversocket.entity.Userinfo;
+import com.serversocket.util.JsonResponse;
 
 import java.util.List;
 
@@ -52,5 +53,5 @@ public interface IUserinfoService {
      * @param userinfo
      * @return
      */
-    boolean checkLogin(Userinfo userinfo);
+    JsonResponse checkLogin(Userinfo userinfo);
 }

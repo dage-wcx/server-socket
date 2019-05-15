@@ -4,17 +4,18 @@
   <resultMap id="BaseResultMap" type="com.serversocket.entity.Message" >
     <constructor >
       <idArg column="msgId" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="sendMsgUserId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="sendMsgUserAccount" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="sendMsgUsername" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sendMsgUserPort" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="sendMSgUserIP" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="receiveMsgUserId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="receiveMsgUserAccount" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="sendMsgTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="sendMsgContent" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    msgId, sendMsgUserId, sendMsgUsername, sendMsgUserPort, sendMSgUserIP, receiveMsgUserId, 
-    sendMsgTime
+    msgId, sendMsgUserAccount, sendMsgUsername, sendMsgUserPort, sendMSgUserIP, receiveMsgUserAccount,
+    sendMsgTime, sendMsgContent
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -27,12 +28,12 @@
     where msgId = #{msgId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.serversocket.entity.Message" >
-    insert into message (msgId, sendMsgUserId, sendMsgUsername, 
-      sendMsgUserPort, sendMSgUserIP, receiveMsgUserId, 
-      sendMsgTime)
-    values (#{msgId,jdbcType=BIGINT}, #{sendMsgUserId,jdbcType=BIGINT}, #{sendMsgUserName,jdbcType=VARCHAR},
-      #{sendMsgUserPort,jdbcType=INTEGER}, #{sendMsgUserIp,jdbcType=BIGINT}, #{receiveMsgUserId,jdbcType=BIGINT},
-      #{sendMsgTime,jdbcType=TIMESTAMP})
+    insert into message (msgId, sendMsgUserAccount, sendMsgUsername,
+      sendMsgUserPort, sendMSgUserIP, receiveMsgUserAccount,
+      sendMsgTime, sendMsgContent)
+    values (#{msgId,jdbcType=BIGINT}, #{sendMsgUserAccount,jdbcType=BIGINT}, #{sendMsgUserName,jdbcType=VARCHAR},
+      #{sendMsgUserPort,jdbcType=INTEGER}, #{sendMsgUserIp,jdbcType=BIGINT}, #{receiveMsgUserAccount,jdbcType=BIGINT},
+      #{sendMsgTime,jdbcType=TIMESTAMP}, #{sendMsgContent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.serversocket.entity.Message" >
     insert into message
@@ -40,8 +41,8 @@
       <if test="msgId != null" >
         msgId,
       </if>
-      <if test="sendMsgUserId != null" >
-        sendMsgUserId,
+      <if test="sendMsgUserAccount != null" >
+        sendMsgUserAccount,
       </if>
       <if test="sendMsgUserName != null" >
         sendMsgUsername,
@@ -52,19 +53,22 @@
       <if test="sendMsgUserIp != null" >
         sendMSgUserIP,
       </if>
-      <if test="receiveMsgUserId != null" >
-        receiveMsgUserId,
+      <if test="receiveMsgUserAccount != null" >
+        receiveMsgUserAccount,
       </if>
       <if test="sendMsgTime != null" >
         sendMsgTime,
+      </if>
+      <if test="sendMsgContent != null" >
+        sendMsgContent,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="msgId != null" >
         #{msgId,jdbcType=BIGINT},
       </if>
-      <if test="sendMsgUserId != null" >
-        #{sendMsgUserId,jdbcType=BIGINT},
+      <if test="sendMsgUserAccount != null" >
+        #{sendMsgUserAccount,jdbcType=BIGINT},
       </if>
       <if test="sendMsgUserName != null" >
         #{sendMsgUserName,jdbcType=VARCHAR},
@@ -75,19 +79,22 @@
       <if test="sendMsgUserIp != null" >
         #{sendMsgUserIp,jdbcType=BIGINT},
       </if>
-      <if test="receiveMsgUserId != null" >
-        #{receiveMsgUserId,jdbcType=BIGINT},
+      <if test="receiveMsgUserAccount != null" >
+        #{receiveMsgUserAccount,jdbcType=BIGINT},
       </if>
       <if test="sendMsgTime != null" >
         #{sendMsgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendMsgContent != null" >
+        #{sendMsgContent,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.serversocket.entity.Message" >
     update message
     <set >
-      <if test="sendMsgUserId != null" >
-        sendMsgUserId = #{sendMsgUserId,jdbcType=BIGINT},
+      <if test="sendMsgUserAccount != null" >
+        sendMsgUserAccount = #{sendMsgUserAccount,jdbcType=BIGINT},
       </if>
       <if test="sendMsgUserName != null" >
         sendMsgUsername = #{sendMsgUserName,jdbcType=VARCHAR},
@@ -98,23 +105,27 @@
       <if test="sendMsgUserIp != null" >
         sendMSgUserIP = #{sendMsgUserIp,jdbcType=BIGINT},
       </if>
-      <if test="receiveMsgUserId != null" >
-        receiveMsgUserId = #{receiveMsgUserId,jdbcType=BIGINT},
+      <if test="receiveMsgUserAccount != null" >
+        receiveMsgUserAccount = #{receiveMsgUserAccount,jdbcType=BIGINT},
       </if>
       <if test="sendMsgTime != null" >
         sendMsgTime = #{sendMsgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendMsgContent != null" >
+        sendMsgContent = #{sendMsgContent,jdbcType=VARCHAR},
       </if>
     </set>
     where msgId = #{msgId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.serversocket.entity.Message" >
     update message
-    set sendMsgUserId = #{sendMsgUserId,jdbcType=BIGINT},
+    set sendMsgUserAccount = #{sendMsgUserAccount,jdbcType=BIGINT},
       sendMsgUsername = #{sendMsgUserName,jdbcType=VARCHAR},
       sendMsgUserPort = #{sendMsgUserPort,jdbcType=INTEGER},
       sendMSgUserIP = #{sendMsgUserIp,jdbcType=BIGINT},
-      receiveMsgUserId = #{receiveMsgUserId,jdbcType=BIGINT},
-      sendMsgTime = #{sendMsgTime,jdbcType=TIMESTAMP}
+      receiveMsgUserAccount = #{receiveMsgUserAccount,jdbcType=BIGINT},
+      sendMsgTime = #{sendMsgTime,jdbcType=TIMESTAMP},
+      sendMsgContent = #{sendMsgContent,jdbcType=VARCHAR}
     where msgId = #{msgId,jdbcType=BIGINT}
   </update>
 </mapper>

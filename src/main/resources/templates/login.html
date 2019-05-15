@@ -2,13 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>登录</title>
 </head>
 <body>
-    <form action="/userinfo/loginUser" method="post">
+    <form>
         <input type="text" name="userAccount" placeholder="请输入账号" /><br/>
         <input type="password" name="password" placeholder="请输入密码" /><br/>
-        <input type="submit" value="登录">
+        <input type="submit" onclick="return submit_do();">
     </form>
+
+    <script>
+        function submit_do(){
+            $.ajax({
+                url:"/userinfo/loginUser",
+                type: "post",
+                data: {
+                    userAccount:$("input[name='userAccount']").val(),
+                    password:$("input[name='password']").val(),
+                },
+                success:function(result){
+                    if(result.code == 1){
+                        window.location.href = "/friend";
+                    }else if(result.code == 0){
+                        alert(result.msg);
+                    }
+                }
+            })
+            return false;
+        }
+
+
+    </script>
+
 </body>
 </html>

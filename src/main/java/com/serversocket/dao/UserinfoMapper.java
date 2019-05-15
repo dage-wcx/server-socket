@@ -23,5 +23,5 @@ public interface UserinfoMapper {
 
     List<Userinfo> selectAllUserinfo();
 
-    int checkLogin(Userinfo userinfo);
+    Userinfo checkLogin(Userinfo userinfo);
 }

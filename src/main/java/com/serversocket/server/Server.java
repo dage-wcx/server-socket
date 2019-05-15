@@ -53,7 +53,7 @@ public class Server {
      * 用来存放已连接的客户端会话
      */
     //private Map<Integer, Socket> clientSocketSession = new HashMap<Integer,Socket>();
-    private Map<String, Socket> clientSocketSession = new HashMap<String,Socket>();
+    private Map<Long, Socket> clientSocketSession = new HashMap<Long,Socket>();
 
     public Server(String serverName, int port, int backlog, byte[] address) {
         this.serverName = serverName;
@@ -74,13 +74,13 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 //客户端连接后获取客户端传递来的客户端名称
                 ois = new ObjectInputStream(socket.getInputStream());
-                String name = (String) ois.readObject();
-                System.out.println(name + "-->客户端连接成功，地址信息：" + socket.getRemoteSocketAddress());
+                long account = (long) ois.readObject();
+                System.out.println(account + "-->客户端连接成功，地址信息：" + socket.getRemoteSocketAddress());
 
                 if(socket != null){
                     //将socket放入map，key是客户端端口号
                     //clientSocketSession.put(socket.getPort(),socket);
-                    clientSocketSession.put(name,socket);
+                    clientSocketSession.put(account,socket);
                     //开启线程处理本次会话
                     Thread thread = new Thread(new SessionHandler(socket,clientSocketSession));
                     thread.setDaemon(true);

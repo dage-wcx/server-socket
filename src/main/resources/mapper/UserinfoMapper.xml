@@ -134,6 +134,6 @@
 
     <select id="checkLogin" parameterType="userinfo" resultMap="baseResultMap">
         select <include refid="Base_Column_List"/> from userinfo
-        where userAccount = #{userAccount,jdbcType=BIGINT} and password = #{password,jdbcType=VARCHAR}
+        where userAccount = #{userAccount,jdbcType=BIGINT} and password = #{password,jdbcType=VARCHAR} and tag = 1
     </select>
 </mapper>
