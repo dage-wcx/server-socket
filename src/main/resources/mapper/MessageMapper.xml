@@ -20,101 +20,101 @@
     select 
     <include refid="Base_Column_List" />
     from message
-    where msgId = #{msgid,jdbcType=BIGINT}
+    where msgId = #{msgId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from message
-    where msgId = #{msgid,jdbcType=BIGINT}
+    where msgId = #{msgId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.serversocket.entity.Message" >
     insert into message (msgId, sendMsgUserId, sendMsgUsername, 
       sendMsgUserPort, sendMSgUserIP, receiveMsgUserId, 
       sendMsgTime)
-    values (#{msgid,jdbcType=BIGINT}, #{sendmsguserid,jdbcType=BIGINT}, #{sendmsgusername,jdbcType=VARCHAR}, 
-      #{sendmsguserport,jdbcType=INTEGER}, #{sendmsguserip,jdbcType=BIGINT}, #{receivemsguserid,jdbcType=BIGINT}, 
-      #{sendmsgtime,jdbcType=TIMESTAMP})
+    values (#{msgId,jdbcType=BIGINT}, #{sendMsgUserId,jdbcType=BIGINT}, #{sendMsgUserName,jdbcType=VARCHAR},
+      #{sendMsgUserPort,jdbcType=INTEGER}, #{sendMsgUserIp,jdbcType=BIGINT}, #{receiveMsgUserId,jdbcType=BIGINT},
+      #{sendMsgTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.serversocket.entity.Message" >
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="msgid != null" >
+      <if test="msgId != null" >
         msgId,
       </if>
-      <if test="sendmsguserid != null" >
+      <if test="sendMsgUserId != null" >
         sendMsgUserId,
       </if>
-      <if test="sendmsgusername != null" >
+      <if test="sendMsgUserName != null" >
         sendMsgUsername,
       </if>
-      <if test="sendmsguserport != null" >
+      <if test="sendMsgUserPort != null" >
         sendMsgUserPort,
       </if>
-      <if test="sendmsguserip != null" >
+      <if test="sendMsgUserIp != null" >
         sendMSgUserIP,
       </if>
-      <if test="receivemsguserid != null" >
+      <if test="receiveMsgUserId != null" >
         receiveMsgUserId,
       </if>
-      <if test="sendmsgtime != null" >
+      <if test="sendMsgTime != null" >
         sendMsgTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="msgid != null" >
-        #{msgid,jdbcType=BIGINT},
+      <if test="msgId != null" >
+        #{msgId,jdbcType=BIGINT},
       </if>
-      <if test="sendmsguserid != null" >
-        #{sendmsguserid,jdbcType=BIGINT},
+      <if test="sendMsgUserId != null" >
+        #{sendMsgUserId,jdbcType=BIGINT},
       </if>
-      <if test="sendmsgusername != null" >
-        #{sendmsgusername,jdbcType=VARCHAR},
+      <if test="sendMsgUserName != null" >
+        #{sendMsgUserName,jdbcType=VARCHAR},
       </if>
-      <if test="sendmsguserport != null" >
-        #{sendmsguserport,jdbcType=INTEGER},
+      <if test="sendMsgUserPort != null" >
+        #{sendMsgUserPort,jdbcType=INTEGER},
       </if>
-      <if test="sendmsguserip != null" >
-        #{sendmsguserip,jdbcType=BIGINT},
+      <if test="sendMsgUserIp != null" >
+        #{sendMsgUserIp,jdbcType=BIGINT},
       </if>
-      <if test="receivemsguserid != null" >
-        #{receivemsguserid,jdbcType=BIGINT},
+      <if test="receiveMsgUserId != null" >
+        #{receiveMsgUserId,jdbcType=BIGINT},
       </if>
-      <if test="sendmsgtime != null" >
-        #{sendmsgtime,jdbcType=TIMESTAMP},
+      <if test="sendMsgTime != null" >
+        #{sendMsgTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.serversocket.entity.Message" >
     update message
     <set >
-      <if test="sendmsguserid != null" >
-        sendMsgUserId = #{sendmsguserid,jdbcType=BIGINT},
+      <if test="sendMsgUserId != null" >
+        sendMsgUserId = #{sendMsgUserId,jdbcType=BIGINT},
       </if>
-      <if test="sendmsgusername != null" >
-        sendMsgUsername = #{sendmsgusername,jdbcType=VARCHAR},
+      <if test="sendMsgUserName != null" >
+        sendMsgUsername = #{sendMsgUserName,jdbcType=VARCHAR},
       </if>
-      <if test="sendmsguserport != null" >
-        sendMsgUserPort = #{sendmsguserport,jdbcType=INTEGER},
+      <if test="sendMsgUserPort != null" >
+        sendMsgUserPort = #{sendMsgUserPort,jdbcType=INTEGER},
       </if>
-      <if test="sendmsguserip != null" >
-        sendMSgUserIP = #{sendmsguserip,jdbcType=BIGINT},
+      <if test="sendMsgUserIp != null" >
+        sendMSgUserIP = #{sendMsgUserIp,jdbcType=BIGINT},
       </if>
-      <if test="receivemsguserid != null" >
-        receiveMsgUserId = #{receivemsguserid,jdbcType=BIGINT},
+      <if test="receiveMsgUserId != null" >
+        receiveMsgUserId = #{receiveMsgUserId,jdbcType=BIGINT},
       </if>
-      <if test="sendmsgtime != null" >
-        sendMsgTime = #{sendmsgtime,jdbcType=TIMESTAMP},
+      <if test="sendMsgTime != null" >
+        sendMsgTime = #{sendMsgTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where msgId = #{msgid,jdbcType=BIGINT}
+    where msgId = #{msgId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.serversocket.entity.Message" >
     update message
-    set sendMsgUserId = #{sendmsguserid,jdbcType=BIGINT},
-      sendMsgUsername = #{sendmsgusername,jdbcType=VARCHAR},
-      sendMsgUserPort = #{sendmsguserport,jdbcType=INTEGER},
-      sendMSgUserIP = #{sendmsguserip,jdbcType=BIGINT},
-      receiveMsgUserId = #{receivemsguserid,jdbcType=BIGINT},
-      sendMsgTime = #{sendmsgtime,jdbcType=TIMESTAMP}
-    where msgId = #{msgid,jdbcType=BIGINT}
+    set sendMsgUserId = #{sendMsgUserId,jdbcType=BIGINT},
+      sendMsgUsername = #{sendMsgUserName,jdbcType=VARCHAR},
+      sendMsgUserPort = #{sendMsgUserPort,jdbcType=INTEGER},
+      sendMSgUserIP = #{sendMsgUserIp,jdbcType=BIGINT},
+      receiveMsgUserId = #{receiveMsgUserId,jdbcType=BIGINT},
+      sendMsgTime = #{sendMsgTime,jdbcType=TIMESTAMP}
+    where msgId = #{msgId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -4,52 +4,52 @@ import java.util.Date;
 
 public class Message {
     /**
-     * 
+     * 信息id
      */
-    private Long msgid;
+    private Long msgId;
 
     /**
-     * 
+     * 发送信息的用户id
      */
-    private Long sendmsguserid;
+    private Long sendMsgUserId;
 
     /**
-     * 
+     * 发送信息的用户名
      */
-    private String sendmsgusername;
+    private String sendMsgUserName;
 
     /**
-     * 
+     * 发送信息的用户端口号
      */
-    private Integer sendmsguserport;
+    private Integer sendMsgUserPort;
 
     /**
-     * 
+     * 发送信息的用户ip
      */
-    private Long sendmsguserip;
+    private Long sendMsgUserIp;
 
     /**
-     * 
+     * 接受信息的用户id
      */
-    private Long receivemsguserid;
+    private Long receiveMsgUserId;
 
     /**
-     * 
+     * 发送信息时间
      */
-    private Date sendmsgtime;
+    private Date sendMsgTime;
 
     /**
      *
      * @mbggenerated 2019-05-15
      */
-    public Message(Long msgid, Long sendmsguserid, String sendmsgusername, Integer sendmsguserport, Long sendmsguserip, Long receivemsguserid, Date sendmsgtime) {
-        this.msgid = msgid;
-        this.sendmsguserid = sendmsguserid;
-        this.sendmsgusername = sendmsgusername;
-        this.sendmsguserport = sendmsguserport;
-        this.sendmsguserip = sendmsguserip;
-        this.receivemsguserid = receivemsguserid;
-        this.sendmsgtime = sendmsgtime;
+    public Message(Long msgId, Long sendMsgUserId, String sendMsgUserName, Integer sendMsgUserPort, Long sendMsgUserIp, Long receiveMsgUserId, Date sendMsgTime) {
+        this.msgId = msgId;
+        this.sendMsgUserId = sendMsgUserId;
+        this.sendMsgUserName = sendMsgUserName;
+        this.sendMsgUserPort = sendMsgUserPort;
+        this.sendMsgUserIp = sendMsgUserIp;
+        this.receiveMsgUserId = receiveMsgUserId;
+        this.sendMsgTime = sendMsgTime;
     }
 
     /**
@@ -65,17 +65,17 @@ public class Message {
      * 
      * @return 
      */
-    public Long getMsgid() {
-        return msgid;
+    public Long getMsgId() {
+        return msgId;
     }
 
     /**
      * 设置
      * 
-     * @param msgid 
+     * @param msgId
      */
-    public void setMsgid(Long msgid) {
-        this.msgid = msgid;
+    public void setMsgId(Long msgId) {
+        this.msgId = msgId;
     }
 
     /**
@@ -83,17 +83,17 @@ public class Message {
      * 
      * @return 
      */
-    public Long getSendmsguserid() {
-        return sendmsguserid;
+    public Long getSendMsgUserId() {
+        return sendMsgUserId;
     }
 
     /**
      * 设置
      * 
-     * @param sendmsguserid 
+     * @param sendMsgUserId
      */
-    public void setSendmsguserid(Long sendmsguserid) {
-        this.sendmsguserid = sendmsguserid;
+    public void setSendMsgUserId(Long sendMsgUserId) {
+        this.sendMsgUserId = sendMsgUserId;
     }
 
     /**
@@ -101,17 +101,17 @@ public class Message {
      * 
      * @return 
      */
-    public String getSendmsgusername() {
-        return sendmsgusername;
+    public String getSendMsgUserName() {
+        return sendMsgUserName;
     }
 
     /**
      * 设置
      * 
-     * @param sendmsgusername 
+     * @param sendMsgUserName
      */
-    public void setSendmsgusername(String sendmsgusername) {
-        this.sendmsgusername = sendmsgusername == null ? null : sendmsgusername.trim();
+    public void setSendMsgUserName(String sendMsgUserName) {
+        this.sendMsgUserName = sendMsgUserName == null ? null : sendMsgUserName.trim();
     }
 
     /**
@@ -119,17 +119,17 @@ public class Message {
      * 
      * @return 
      */
-    public Integer getSendmsguserport() {
-        return sendmsguserport;
+    public Integer getSendMsgUserPort() {
+        return sendMsgUserPort;
     }
 
     /**
      * 设置
      * 
-     * @param sendmsguserport 
+     * @param sendMsgUserPort
      */
-    public void setSendmsguserport(Integer sendmsguserport) {
-        this.sendmsguserport = sendmsguserport;
+    public void setSendMsgUserPort(Integer sendMsgUserPort) {
+        this.sendMsgUserPort = sendMsgUserPort;
     }
 
     /**
@@ -137,17 +137,17 @@ public class Message {
      * 
      * @return 
      */
-    public Long getSendmsguserip() {
-        return sendmsguserip;
+    public Long getSendMsgUserIp() {
+        return sendMsgUserIp;
     }
 
     /**
      * 设置
      * 
-     * @param sendmsguserip 
+     * @param sendMsgUserIp
      */
-    public void setSendmsguserip(Long sendmsguserip) {
-        this.sendmsguserip = sendmsguserip;
+    public void setSendMsgUserIp(Long sendMsgUserIp) {
+        this.sendMsgUserIp = sendMsgUserIp;
     }
 
     /**
@@ -155,17 +155,17 @@ public class Message {
      * 
      * @return 
      */
-    public Long getReceivemsguserid() {
-        return receivemsguserid;
+    public Long getReceiveMsgUserId() {
+        return receiveMsgUserId;
     }
 
     /**
      * 设置
      * 
-     * @param receivemsguserid 
+     * @param receiveMsgUserId
      */
-    public void setReceivemsguserid(Long receivemsguserid) {
-        this.receivemsguserid = receivemsguserid;
+    public void setReceiveMsgUserId(Long receiveMsgUserId) {
+        this.receiveMsgUserId = receiveMsgUserId;
     }
 
     /**
@@ -173,16 +173,16 @@ public class Message {
      * 
      * @return 
      */
-    public Date getSendmsgtime() {
-        return sendmsgtime;
+    public Date getSendMsgTime() {
+        return sendMsgTime;
     }
 
     /**
      * 设置
      * 
-     * @param sendmsgtime 
+     * @param sendMsgTime
      */
-    public void setSendmsgtime(Date sendmsgtime) {
-        this.sendmsgtime = sendmsgtime;
+    public void setSendMsgTime(Date sendMsgTime) {
+        this.sendMsgTime = sendMsgTime;
     }
 }
