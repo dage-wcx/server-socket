@@ -29,4 +29,6 @@ public class WebContext {
 
 
     public static final String USERNAME_OR_PASSWORD_ERROR = "用户名或密码错误！";
+
+    public static final String WAIT_VER = "等待验证！";
 }

@@ -18,18 +18,21 @@ public class WebController {
         return "login";
     }
 
-    @RequestMapping("register")
+    @RequestMapping("/register")
     public String register(){
         return "register";
     }
 
-    @RequestMapping("addfriend")
+    @RequestMapping("/addfriend")
     public String addFriend(){
         return "addfriend";
     }
 
-    @RequestMapping("showfriend")
+    @RequestMapping("/showfriend")
     public String showFriends(){
         return "showfriend";
     }
+
+    @RequestMapping("/addFriendVer")
+    public String addFriendVer(){return "addFriendVer";}
 }

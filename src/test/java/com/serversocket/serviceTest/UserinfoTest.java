@@ -1,5 +1,6 @@
 package com.serversocket.serviceTest;
 
+import com.serversocket.dao.FriendsMapper;
 import com.serversocket.dao.UserinfoMapper;
 import com.serversocket.entity.Userinfo;
 import com.serversocket.service.IUserinfoService;
@@ -30,6 +31,9 @@ public class UserinfoTest {
 
     @Resource
     private UserinfoMapper userinfoMapper;
+
+    @Resource
+    private FriendsMapper friendsMapper;
 
     @Test
     public void addUserinfo() {
@@ -88,7 +92,7 @@ public class UserinfoTest {
 
     @Test
     public void showFriends(){
-        List<Userinfo> userinfoList = userinfoMapper.showFriendsByUserinfoAccount(1192274716L);
+        List<Userinfo> userinfoList = friendsMapper.showFriendsByUserinfoAccount(1192274716L);
         System.out.println(userinfoList);
     }
 }

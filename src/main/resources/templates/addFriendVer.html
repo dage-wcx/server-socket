@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>好友验证</title>
+</head>
+<body>
+<span id="account" th:text="${session.user.userAccount}"></span>
+<table id="show">
+
+</table>
+</body>
+
+<script type="text/javascript">
+    $.ajax({
+        url: "/friends/getAddFriendsMsg",
+        type: "post",
+        data: {
+            account: $("#account").text()
+        },
+        success: function (result) {
+            if (result.code == 1) {
+                var users = result.data;
+                for (var i in users) {
+                    $("#show").append("<tr><td id='faccount'>" + users[i].userAccount + "</td>" +
+                        "<td>" + users[i].username + "</td>" +
+                        "<td>" + users[i].sex + "</td>" +
+                        "<td class='aor'><a href='javascript:void(0);' style='cursor: pointer' onclick='agreeOrRefuse(-1," + users[i].userAccount + ",this)'>拒绝</a>" +
+                        "<a href='javascript:void(0);' style='cursor: pointer' onclick='agreeOrRefuse(1," + users[i].userAccount + ",this)'>同意</a></td></tr>");
+                }
+            }
+        }
+    });
+
+    function agreeOrRefuse(code, friendAccount, obj) {
+        var o = $(obj).parent();
+        $.ajax({
+            url: "/friends/agreeOrRefuseAddFriend",
+            type: "post",
+            data: {
+                userAccount: $("#account").text(),
+                friendAccount: friendAccount,
+                stateNotify: code
+            },
+            success: function (result) {
+                if (result.code == 1) {
+                    $(o).empty();
+                    $(o).append(result.msg);
+                } else if (result.code == 0) {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+
+</html>

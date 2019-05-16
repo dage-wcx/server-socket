@@ -57,13 +57,4 @@ public class UserinfoController {
         return userinfoServiceImpl.serachUserinfoByAccount(account);
     }
 
-    /**
-     * 展示用户好友
-     *
-     * @return
-     */
-    @PostMapping("showFriends")
-    public JsonResponse showFriends(Long account) {
-        return userinfoServiceImpl.showFriends(account);
-    }
 }

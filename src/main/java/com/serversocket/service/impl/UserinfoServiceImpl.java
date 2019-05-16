@@ -176,24 +176,4 @@ public class UserinfoServiceImpl implements IUserinfoService {
         return new JsonResponse(WebContext.COMMON_R_FAIL, WebContext.COMMENT_ERR_MSG, WebContext.COMMENT_FALSE);
     }
 
-    /**
-     * 展示用户好友
-     *
-     * @param userAccount
-     * @return
-     */
-    @Override
-    public JsonResponse showFriends(Long userAccount) {
-        try {
-            List<Userinfo> friendList = userinfoMapper.showFriendsByUserinfoAccount(userAccount);
-            System.out.println(friendList);
-            if (friendList != null) {
-                return new JsonResponse(WebContext.COMMON_R_OK, WebContext.COMMENT_SUCCESS_MSG, friendList);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new JsonResponse(WebContext.COMMON_R_FAIL, WebContext.COMMENT_ERR_MSG, WebContext.COMMENT_FALSE);
-    }
-
 }

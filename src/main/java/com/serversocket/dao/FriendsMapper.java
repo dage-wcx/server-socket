@@ -36,4 +36,21 @@ public interface FriendsMapper {
      */
     int updateByPrimaryKey(Friends record);
 
+    /**
+     * 根据用户账号获取用户的所有好友
+     *
+     * @param userAccount
+     * @return
+     */
+    List<Userinfo> showFriendsByUserinfoAccount(Long userAccount);
+
+    List<Friends> selectByFriendAccount(Long account);
+
+    /**
+     * 修改通知状态
+     *
+     * @param friends
+     * @return
+     */
+    int updateStateNotifyByUaccountAndFaccount(Friends friends);
 }

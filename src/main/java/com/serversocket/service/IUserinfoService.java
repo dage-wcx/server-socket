@@ -71,12 +71,4 @@ public interface IUserinfoService {
      */
     JsonResponse serachUserinfoByAccount(Long account);
 
-    /**
-     * 显示用户好友
-     *
-     * @param userAccount
-     * @return
-     */
-    JsonResponse showFriends(Long userAccount);
-
 }

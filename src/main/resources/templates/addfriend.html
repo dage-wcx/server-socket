@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>添加好友</title>
 </head>
 <body>
-
+<span id="l_account" th:text="${session.user.userAccount}"></span>
 <div>
     <input type="text" name="account" placeholder="请输入账号">
     <span id="serach" style="cursor: pointer">搜索</span><br/>
@@ -33,16 +33,32 @@
             }),
             success: function (result) {
                 if (result.code == 1) {
+                    $("#userinfo").empty();
                     var user = result.data;
-                    $("#userinfo").append("<td>"+user.userAccount+"</td>" +
-                        "<td>"+user.username+"</td>" +
-                        "<td>"+user.sex+"</td>" +
-                        "<td><a href=''>加为好友</a></td>")
+                    $("#userinfo").append("<td id='b_account'>" + user.userAccount + "</td>" +
+                        "<td>" + user.username + "</td>" +
+                        "<td>" + user.sex + "</td>" +
+                        "<td><a href='' id='add'>加为好友</a></td>")
                 } else if (result.code == 0) {
                     alert(result.msg);
                 }
             }
         })
+    });
+
+    $(document).on("click", "#add", function () {
+        $.ajax({
+            url: "/friends/addFriendByUserAccount",
+            type: "post",
+            data: {
+                userAccount: $("#l_account").text(),
+                friendAccount: $("#b_account").text(),
+            },
+            success: function (result) {
+                alert(result.msg);
+            }
+        });
+        return false;
     });
 </script>
 

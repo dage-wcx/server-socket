@@ -7,7 +7,9 @@
 </head>
 <body>
 
-<span id="account" th:text="${session.user.userAccount}"></span>
+<span id="account" th:text="${session.user.userAccount}"></span><br/>
+<a href="/addFriendVer">验证通知</a><br/>
+<span>消息通知</span>
 
 <table id="show">
 </table>
@@ -16,18 +18,20 @@
 
 <script type="text/javascript">
     $.ajax({
-        url: "/userinfo/showFriends",
+        url: "/friends/showFriends",
         type: "post",
         data: ({
             account: $("#account").text(),
         }),
         success: function (result) {
-            var users = result.data;
-            for (var i in users){
-                $("#show").append("<tr><td>"+users[i].userAccount+"</td>" +
-                    "<td>"+users[i].username+"</td>" +
-                    "<td>"+users[i].sex+"</td>" +
-                    "<td><a href='' style='cursor: pointer'>发消息</a></td></tr>" );
+            if (result.code == 1) {
+                var users = result.data;
+                for (var i in users) {
+                    $("#show").append("<tr><td>" + users[i].userAccount + "</td>" +
+                        "<td>" + users[i].username + "</td>" +
+                        "<td>" + users[i].sex + "</td>" +
+                        "<td><a href='' style='cursor: pointer'>发消息</a></td></tr>");
+                }
             }
         }
     });
