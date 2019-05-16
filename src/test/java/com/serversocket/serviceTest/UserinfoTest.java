@@ -76,7 +76,7 @@ public class UserinfoTest {
         Userinfo u = new Userinfo();
         u.setUserAccount(11922747126L);
         u.setPassword("dage1998");
-        JsonResponse jr = userinfoServiceImpl.checkLogin(u);
+        JsonResponse jr = userinfoServiceImpl.checkLogin(u,null);
         System.out.println(jr.getMsg());
     }
 
@@ -84,5 +84,11 @@ public class UserinfoTest {
     public void serachUserByAccount(){
        Userinfo u = userinfoMapper.selectUserinfoByAccount(1192274716L);
        System.out.println(u);
+    }
+
+    @Test
+    public void showFriends(){
+        List<Userinfo> userinfoList = userinfoMapper.showFriendsByUserinfoAccount(1192274716L);
+        System.out.println(userinfoList);
     }
 }

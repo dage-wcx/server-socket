@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.serversocket.dao.FriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.serversocket.entity.Friends" >
+    <constructor >
+      <idArg column="f_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_account" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="friend_account" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, user_account, friend_account
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from friends
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from friends
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.serversocket.entity.Friends" >
+    insert into friends (f_id, user_account, friend_account
+      )
+    values (#{fId,jdbcType=BIGINT}, #{userAccount,jdbcType=BIGINT}, #{friendAccount,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.serversocket.entity.Friends" >
+    insert into friends
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="userAccount != null" >
+        user_account,
+      </if>
+      <if test="friendAccount != null" >
+        friend_account,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="userAccount != null" >
+        #{userAccount,jdbcType=BIGINT},
+      </if>
+      <if test="friendAccount != null" >
+        #{friendAccount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.serversocket.entity.Friends" >
+    update friends
+    <set >
+      <if test="userAccount != null" >
+        user_account = #{userAccount,jdbcType=BIGINT},
+      </if>
+      <if test="friendAccount != null" >
+        friend_account = #{friendAccount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.serversocket.entity.Friends" >
+    update friends
+    set user_account = #{userAccount,jdbcType=BIGINT},
+      friend_account = #{friendAccount,jdbcType=BIGINT}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+
+</mapper>

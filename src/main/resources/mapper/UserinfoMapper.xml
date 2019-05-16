@@ -76,16 +76,16 @@
 
     <resultMap id="baseResultMap" type="userinfo">
         <id column="userId" property="userId"/>
-        <id column="userAccount" property="userAccount"/>
-        <id column="username" property="username"/>
-        <id column="password" property="password"/>
-        <id column="phone" property="phone"/>
-        <id column="sex" property="sex"/>
-        <id column="headPhoto" property="headPhoto"/>
-        <id column="birthday" property="birthday"/>
-        <id column="registerTime" property="registerTime"/>
-        <id column="modifyTime" property="modifyTime"/>
-        <id column="tag" property="tag"/>
+        <result column="userAccount" property="userAccount"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="sex" property="sex"/>
+        <result column="headPhoto" property="headPhoto"/>
+        <result column="birthday" property="birthday"/>
+        <result column="registerTime" property="registerTime"/>
+        <result column="modifyTime" property="modifyTime"/>
+        <result column="tag" property="tag"/>
     </resultMap>
     <sql id="Base_Column_List" >
         userId, userAccount, username, password, headPhoto, phone, sex, birthday, registerTime, modifyTime, tag
@@ -142,5 +142,13 @@
     <select id="selectUserinfoByAccount" parameterType="userinfo" resultMap="baseResultMap">
         select <include refid="Base_Column_List"/> from userinfo
         where userAccount = #{account,jdbcType=BIGINT}
+    </select>
+
+    <!--根据用户账号获取用户的所有好友-->
+    <select id="showFriendsByUserinfoAccount" parameterType="long" resultMap="baseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        from userinfo where userAccount in (
+            SELECT friend_account from friends where user_account = #{value}
+        )
     </select>
 </mapper>

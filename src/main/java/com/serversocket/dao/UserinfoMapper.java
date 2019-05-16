@@ -26,4 +26,12 @@ public interface UserinfoMapper {
     Userinfo checkLogin(Userinfo userinfo);
 
     Userinfo selectUserinfoByAccount(Long account);
+
+    /**
+     * 根据用户账号获取用户的所有好友
+     *
+     * @param userAccount
+     * @return
+     */
+    List<Userinfo> showFriendsByUserinfoAccount(Long userAccount);
 }

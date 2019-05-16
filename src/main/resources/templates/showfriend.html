@@ -11,15 +11,29 @@
 </div>
 
 <table>
-    <tbody>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr id="show">
     </tr>
-    </tbody>
 </table>
 
+<a href="/addfriend">添加好友</a>
+
+<script type="text/javascript">
+    alert(1);
+    $.ajax({
+        url: "/userinfo/showFriends",
+        type: "post",
+        data: ({
+            account: 1192274716,
+        }),
+        success: function (result) {
+            for (var user in result.data){
+                $("#show").append("<td>user.userAccount</td>" +
+                    "<td>user.username</td>" +
+                    "<td>user.sex</td>" );
+            }
+        }
+    });
+</script>
 
 </body>
 </html>

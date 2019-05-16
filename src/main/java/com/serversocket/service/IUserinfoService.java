@@ -3,6 +3,8 @@ package com.serversocket.service;
 import com.serversocket.entity.Userinfo;
 import com.serversocket.util.JsonResponse;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -59,6 +61,22 @@ public interface IUserinfoService {
      * @param userinfo
      * @return
      */
-    JsonResponse checkLogin(Userinfo userinfo);
+    JsonResponse checkLogin(Userinfo userinfo, HttpServletRequest request);
+
+    /**
+     * 根据账号搜索用户
+     *
+     * @param account
+     * @return
+     */
+    JsonResponse serachUserinfoByAccount(Long account);
+
+    /**
+     * 显示用户好友
+     *
+     * @param userAccount
+     * @return
+     */
+    JsonResponse showFriends(Long userAccount);
 
 }

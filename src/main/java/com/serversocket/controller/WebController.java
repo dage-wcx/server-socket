@@ -24,7 +24,12 @@ public class WebController {
     }
 
     @RequestMapping("addfriend")
-    public String friend(){
+    public String addFriend(){
         return "addfriend";
+    }
+
+    @RequestMapping("showfriend")
+    public String showFriends(){
+        return "showfriend";
     }
 }

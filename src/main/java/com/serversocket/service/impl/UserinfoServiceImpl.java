@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -141,17 +143,56 @@ public class UserinfoServiceImpl implements IUserinfoService {
      * @return
      */
     @Override
-    public JsonResponse checkLogin(Userinfo userinfo) {
+    public JsonResponse checkLogin(Userinfo userinfo, HttpServletRequest request) {
         try {
             Userinfo u = userinfoMapper.checkLogin(userinfo);
             if (u != null) {
                 //new Client(u.getUserAccount()).scoketStart();
+                request.getSession().setAttribute("user",u);
                 return new JsonResponse(WebContext.COMMON_R_OK, WebContext.COMMENT_SUCCESS_MSG, WebContext.COMMENT_TRUE);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return new JsonResponse(WebContext.COMMON_R_FAIL, WebContext.USERNAME_OR_PASSWORD_ERROR, WebContext.COMMENT_FALSE);
+    }
+
+    /**
+     * 根据账号搜索用户
+     *
+     * @param account
+     * @return
+     */
+    @Override
+    public JsonResponse serachUserinfoByAccount(Long account) {
+        try {
+            Userinfo userinfo = userinfoMapper.selectUserinfoByAccount(account);
+            if (userinfo != null) {
+                return new JsonResponse(WebContext.COMMON_R_OK, WebContext.COMMENT_SUCCESS_MSG, userinfo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JsonResponse(WebContext.COMMON_R_FAIL, WebContext.COMMENT_ERR_MSG, WebContext.COMMENT_FALSE);
+    }
+
+    /**
+     * 展示用户好友
+     *
+     * @param userAccount
+     * @return
+     */
+    @Override
+    public JsonResponse showFriends(Long userAccount) {
+        try {
+            List<Userinfo> friendList = userinfoMapper.showFriendsByUserinfoAccount(userAccount);
+            if (friendList != null) {
+                return new JsonResponse(WebContext.COMMON_R_OK, WebContext.COMMENT_SUCCESS_MSG, friendList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JsonResponse(WebContext.COMMON_R_FAIL, WebContext.COMMENT_ERR_MSG, WebContext.COMMENT_FALSE);
     }
 
 }

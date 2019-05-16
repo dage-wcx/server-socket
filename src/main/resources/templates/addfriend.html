@@ -8,30 +8,39 @@
 <body>
 
 <div>
-    <input type="text" name="serach" placeholder="请输入账号\昵称">
+    <input type="text" name="account" placeholder="请输入账号">
     <span id="serach">搜索</span><br/>
 </div>
 
 <table>
-    <tbody>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th>账号</th>
+        <th>昵称</th>
+        <th>性别</th>
     </tr>
-    </tbody>
+    <tr id="userinfo">
+
+    </tr>
 </table>
 
 <script type="text/javascript">
     $("#serach").click(function () {
         $.ajax({
-            url: "",
+            url: "/userinfo/serachUserinfoByAccount",
             type: "post",
             data: ({
-                serach: $("input[name='serach']").val(),
+                account: $("input[name='account']").val(),
             }),
-            success: function () {
-
+            success: function (result) {
+                if (result.code == 1) {
+                    var user = result.data;
+                    $("#userinfo").append("<td>"+user.userAccount+"</td>" +
+                        "<td>"+user.username+"</td>" +
+                        "<td>"+user.sex+"</td>" +
+                        "<td><a href=''>加为好友</a></td>")
+                } else if (result.code == 0) {
+                    alert(result.msg);
+                }
             }
         })
     });
