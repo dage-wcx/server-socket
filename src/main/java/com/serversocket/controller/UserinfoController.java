@@ -64,8 +64,6 @@ public class UserinfoController {
      */
     @PostMapping("showFriends")
     public JsonResponse showFriends(Long account) {
-        System.out.println(1111111111);
-        System.out.println(account);
         return userinfoServiceImpl.showFriends(account);
     }
 }

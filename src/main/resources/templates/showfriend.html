@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>展示好友</title>
 </head>
 <body>
 
-<div>
+<span id="account" th:text="${session.user.userAccount}"></span>
 
-</div>
-
-<table>
-    <tr id="show">
-    </tr>
+<table id="show">
 </table>
 
-<a href="/addfriend">添加好友</a>
+<a href="/addfriend" style="cursor: pointer">添加新好友</a>
 
 <script type="text/javascript">
-    alert(1);
     $.ajax({
         url: "/userinfo/showFriends",
         type: "post",
         data: ({
-            account: 1192274716,
+            account: $("#account").text(),
         }),
         success: function (result) {
-            for (var user in result.data){
-                $("#show").append("<td>user.userAccount</td>" +
-                    "<td>user.username</td>" +
-                    "<td>user.sex</td>" );
+            var users = result.data;
+            for (var i in users){
+                $("#show").append("<tr><td>"+users[i].userAccount+"</td>" +
+                    "<td>"+users[i].username+"</td>" +
+                    "<td>"+users[i].sex+"</td>" +
+                    "<td><a href='' style='cursor: pointer'>发消息</a></td></tr>" );
             }
         }
     });

@@ -186,6 +186,7 @@ public class UserinfoServiceImpl implements IUserinfoService {
     public JsonResponse showFriends(Long userAccount) {
         try {
             List<Userinfo> friendList = userinfoMapper.showFriendsByUserinfoAccount(userAccount);
+            System.out.println(friendList);
             if (friendList != null) {
                 return new JsonResponse(WebContext.COMMON_R_OK, WebContext.COMMENT_SUCCESS_MSG, friendList);
             }
