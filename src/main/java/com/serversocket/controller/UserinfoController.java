@@ -1,5 +1,7 @@
 package com.serversocket.controller;
 
+import com.serversocket.client.Client;
+import com.serversocket.entity.Message;
 import com.serversocket.entity.Userinfo;
 import com.serversocket.service.IUserinfoService;
 import com.serversocket.util.JsonResponse;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @ClassName UserinfoController
@@ -23,6 +26,9 @@ public class UserinfoController {
 
     @Autowired
     private IUserinfoService userinfoServiceImpl;
+
+    @Autowired
+    private Client client;
 
     /**
      * 注册
@@ -55,6 +61,12 @@ public class UserinfoController {
     @PostMapping("serachUserinfoByAccount")
     public JsonResponse serachUserinfoByAccount(Long account) {
         return userinfoServiceImpl.serachUserinfoByAccount(account);
+    }
+
+    @PostMapping("/chat")
+    public JsonResponse chat(Message message) throws IOException {
+        client.getSocket(1192274716L);
+        return null;
     }
 
 }

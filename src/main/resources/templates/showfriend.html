@@ -30,11 +30,15 @@
                     $("#show").append("<tr><td>" + users[i].userAccount + "</td>" +
                         "<td>" + users[i].username + "</td>" +
                         "<td>" + users[i].sex + "</td>" +
-                        "<td><a href='' style='cursor: pointer'>发消息</a></td></tr>");
+                        "<td><a href='/chat?receiveAccount="+users[i].userAccount+"&receiveUsername="+users[i].username+"' onclick='chat()' style='cursor: pointer'>发消息</a></td></tr>");
                 }
             }
         }
     });
+
+    function chat() {
+        alert(111)
+    }
 </script>
 
 </body>

@@ -35,4 +35,7 @@ public class WebController {
 
     @RequestMapping("/addFriendVer")
     public String addFriendVer(){return "addFriendVer";}
+
+    @RequestMapping("/chat")
+    public String chat(){return "chat";}
 }

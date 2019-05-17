@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>聊天界面</title>
+</head>
+<body>
+<span id="account" th:text="${session.user.userAccount}"></span>
+<span id="username" th:text="${session.user.username}"></span>
+<div></div>
+<input type="text" placeholder="输入你要发送的消息"><span id="send">发送</span>
+
+<script type="text/javascript">
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return unescape(r[2]);
+        return null;
+    }
+
+    $("#send").click(function () {
+        $.ajax({
+            url: "/userinfo/chat",
+            type: "post",
+            data: {
+                sendMsgUserAccount:$("#account").text(),
+                sendMsgUserName:$
+            }
+
+        });
+    });
+
+    /*alert(GetQueryString("receiveUsername"))
+    alert(GetQueryString("receiveAccount"))*/
+</script>
+</body>
+</html>

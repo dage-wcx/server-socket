@@ -1,6 +1,7 @@
 package com.serversocket.client;
 
 import com.serversocket.entity.Message;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,12 +17,13 @@ import java.util.Scanner;
  * @Date 2019/04/29 15:18
  * @Version
  **/
+@Component
 public class Client {
 
     /**
      * 客户端账号
      */
-    private Long account;
+    private Long account =1192274716L;
 
     /**
      * 客户端对象
@@ -43,12 +45,40 @@ public class Client {
      */
     private ObjectOutputStream oos;
 
-    public Client(Long account){
+    /*public Client(Long account){
         this.account = account;
-    }
+    }*/
 
     public Long getAccount() {
         return account;
+    }
+
+    public Socket getSocket(long account) throws IOException {
+        socket = new Socket("127.1.1.0", 8888);
+        os = new ObjectOutputStream(socket.getOutputStream());
+        os.writeObject(account);
+        return socket;
+    }
+
+    public void receiveMsg(Socket socket){
+        //接收返回数据
+        new Thread(){
+            @Override
+            public void run(){
+                try{
+                    while(true){
+                        //获取服务器转发过来的消息
+                        ois = new ObjectInputStream(socket.getInputStream());
+                        Message msg = (Message) ois.readObject();
+                        System.out.println(msg.getSendMsgTime() + "  " +msg.getSendMsgUserName() + "说：" + msg.getSendMsgContent());
+
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
     }
 
     public void scoketStart(){
@@ -56,7 +86,6 @@ public class Client {
             socket = new Socket("127.1.1.0", 8888);
             os = new ObjectOutputStream(socket.getOutputStream());
             os.writeObject(account);
-            System.out.println(account + "-->客户端启动，地址信息：" + socket.getLocalSocketAddress() );
 
             //接收返回数据
             new Thread(){
